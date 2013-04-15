@@ -290,7 +290,7 @@ class PageCommentInterface_Form extends Form {
 						$comment->write();
 					}
 					echo "<b>"._t('PageCommentInterface_Form.SPAMDETECTED', 'Spam detected!!') . "</b><br /><br />";
-					printf("If you believe this was in error, please email %s.", ereg_replace("@", " _(at)_", Email::getAdminEmail()));
+					printf("If you believe this was in error, please email %s.", str_replace("@", " _(at)_", Email::getAdminEmail()));
 					echo "<br /><br />"._t('PageCommentInterface_Form.MSGYOUPOSTED', 'The message you posted was:'). "<br /><br />";
 					echo $data['Comment'];
 					

@@ -580,8 +580,8 @@ class LeftAndMain extends Controller {
 		);
 
 		// Trim off the outer tag
-		$tree = ereg_replace('^[ \t\r\n]*<ul[^>]*>','', $tree);
-		$tree = ereg_replace('</ul[^>]*>[ \t\r\n]*$','', $tree);
+		$tree = preg_replace('^[ \t\r\n]*<ul[^>]*>','', $tree);
+		$tree = preg_replace('<\/ul[^>]*>[ \t\r\n]*$','', $tree);
 		
 		return $tree;
 	}
