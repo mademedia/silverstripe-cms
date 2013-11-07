@@ -28,7 +28,8 @@ abstract class CMSSiteTreeFilter extends Object {
 		}
 
 		$leftAndMain = new CMSMain();
-		$tree = $leftAndMain->getSiteTreeFor('SiteTree', isset($_REQUEST['ID']) ? $_REQUEST['ID'] : 0, null, null, array($this, 'includeInTree'), count($this->ids));
+		$tree = $leftAndMain->getSiteTreeFor('Page', isset($_REQUEST['ID']) ? $_REQUEST['ID'] : 0, null, null, array($this, 'includeInTree'), count($this->ids));
+
 
 		// Trim off the outer tag
 		$tree = preg_replace('~^[ \t\r\n]*<ul[^>]*>~','', $tree);
