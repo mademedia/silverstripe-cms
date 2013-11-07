@@ -570,8 +570,9 @@ class LeftAndMain extends Controller {
 	public function getsubtree($request) {
 		// Get the tree
 		$minNodeCount = (is_numeric($request->getVar('minNodeCount'))) ? $request->getVar('minNodeCount') : NULL;
+		$class = $this->stat('tree_class') != "SiteTree" ? $this->stat('tree_class') : "Page";
 		$tree = $this->getSiteTreeFor(
-			$this->stat('tree_class'), 
+			$class, 
 			$request->getVar('ID'), 
 			null, 
 			null, 
@@ -582,7 +583,6 @@ class LeftAndMain extends Controller {
 		// Trim off the outer tag
 		$tree = preg_replace('/^[ \t\r\n]*\<ul[^>]*\>/','', $tree);
 		$tree = preg_replace('/\<\/ul[^>]*\>[ \t\r\n]*$/','', $tree);
-		
 		return $tree;
 	}
 
