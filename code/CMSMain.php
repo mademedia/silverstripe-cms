@@ -316,6 +316,7 @@ JS;
 				}
 				return " {\n " . implode(", \n", $parts) . " }\n";
 			} else {
+				$parts = array();
 				foreach($array as $part) $parts[] = $this->jsDeclaration($part);
 				return " [ " . implode(", ", $parts) . " ]\n";
 			}
