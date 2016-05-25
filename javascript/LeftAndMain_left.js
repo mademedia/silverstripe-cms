@@ -234,9 +234,9 @@ TreeNodeAPI.prototype = {
 		ul.appendTreeNode = function(node) {
 			this.cuedNewNodes[this.cuedNewNodes.length] = node;
 		}
-		
-		var args = {ajax:1, ID:this.getIdx()};
-		
+
+		var args = {ajax:1, ID:this.getIdx(), minNodeCount: 1};
+
 		// Add current locale for any subtree selection
 		if ($('LangSelector')) args.locale = $('LangSelector').value;
 		
