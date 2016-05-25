@@ -507,7 +507,7 @@ class LeftAndMain extends Controller {
 	 * @param $childrenMethod The method to call to get the children of the tree.  For example,
 	 *                        Children, AllChildrenIncludingDeleted, or AllHistoricalChildren
 	 */
-	function getSiteTreeFor($className, $rootID = null, $childrenMethod = null, $numChildrenMethod = null, $filterFunction = null, $minNodeCount = 30) {
+	function getSiteTreeFor($className, $rootID = null, $childrenMethod = null, $numChildrenMethod = null, $filterFunction = null, $minNodeCount = 30, $childLevels = -1) {
 		// Default childrenMethod and numChildrenMethod
 		if (!$childrenMethod) $childrenMethod = 'AllChildrenIncludingDeleted';
 		if (!$numChildrenMethod) $numChildrenMethod = 'numChildren';
@@ -540,7 +540,8 @@ class LeftAndMain extends Controller {
 			true, 
 			$childrenMethod,
 			$numChildrenMethod,
-			$minNodeCount
+			$minNodeCount,
+		  $childLevels
 		);
 
 		// Wrap the root if needs be.
@@ -572,12 +573,13 @@ class LeftAndMain extends Controller {
 		$minNodeCount = (is_numeric($request->getVar('minNodeCount'))) ? $request->getVar('minNodeCount') : NULL;
 		$class = $this->stat('tree_class') != "SiteTree" ? $this->stat('tree_class') : "Page";
 		$tree = $this->getSiteTreeFor(
-			$class, 
-			$request->getVar('ID'), 
-			null, 
-			null, 
+			$class,
+			$request->getVar('ID'),
 			null,
-			$minNodeCount
+			null,
+			null,
+			$minNodeCount,
+			0
 		);
 
 		// Trim off the outer tag
