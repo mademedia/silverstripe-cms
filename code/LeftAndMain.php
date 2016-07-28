@@ -514,7 +514,13 @@ class LeftAndMain extends Controller {
 		
 		// Get the tree root
 		$obj = $rootID ? $this->getRecord($rootID) : singleton($className);
-		
+
+		if ($this->hasMethod('loadListViewForSubTree')) {
+			if ($output = $this->loadListViewForSubTree($obj)) {
+				return $output;
+			}
+		}
+
 		// Mark the nodes of the tree to return
 		if ($filterFunction) $obj->setMarkingFilterFunction($filterFunction);
 

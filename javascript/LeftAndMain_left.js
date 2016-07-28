@@ -212,7 +212,11 @@ TreeAPI.prototype = {
 TreeNodeAPI = Class.create();
 TreeNodeAPI.prototype = {
 	selectTreeNode : function() {
-		if(this.getElementsByTagName('a')[0].href) {
+		// open a new window with list view if list-view-loader link exists
+		var loadListViewLink = this.getElementsByClassName('list-view-loader');
+		if (loadListViewLink.length) {
+			window.location = loadListViewLink[0].href;
+		} else if (this.getElementsByTagName('a')[0].href) {
 			_AJAX_LOADING = true;
 			if($('sitetree').notify('SelectionChanged', this)) {
 				autoSave(true, this.getPageFromServer.bind(this));
